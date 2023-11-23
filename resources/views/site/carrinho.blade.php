@@ -21,9 +21,18 @@
         </div>
       </div>
     @endif
-
-    <h5> Seu carrinho possui {{ $itens->count() }} produtos.</h5>
-
+    
+    @if($itens->count() == 0)
+       
+       <div class="card orange">
+        <div class="card-content white-text">
+          <span class="card-title">Seu carrinho está vazio...</span>
+          <p>Aproveite nossas promoções!</p>
+        </div>
+      </div>
+    
+    @else
+      <h5> Seu carrinho possui {{ $itens->count() }} produtos.</h5>
      <table class="striped">
         <thead>
           <tr>
@@ -46,7 +55,7 @@
             <form action="{{ route('site.atualizaCarrinho')}}" method="POST" enctype="multipart/form-data">
                 @csrf
             <input type="hidden" name="id" value="{{ $item->id }}"> 
-            <td> <input style="width: 40px; font-weight:900;" class="white center" type="number" name="quantity" value="{{ $item->quantity }}"></td>
+            <td> <input style="width: 40px; font-weight:900;" class="white center" min="1" type="number" name="quantity" value="{{ $item->quantity }}"></td>
             <td> 
             <button class="btn-floating waves-effect waves-light orange"><i class="material-icons">refresh</i></button>
             </form>    
@@ -65,8 +74,18 @@
         </tbody>
       </table>
 
+      <div class="card orange">
+        <div class="card-content white-text">
+          <span class="card-title">R$ {{number_format(\Cart::getTotal(), 2, ',', '.' )}}</span>
+          <p> Pague em até 12x sem juros!</p>
+        </div>
+      </div>
+        
+    @endif
+    
+
     <div class="row container center">
-        <button class="btn waves-effect waves-light blue"> Continuar comprando <i class="material-icons right">arrow back</i></button>
+        <a href="{{route('site.index')}}" class="btn waves-effect waves-light blue"> Continuar comprando <i class="material-icons right">arrow back</i></a>
         <a href="{{route('site.limparCarrinho')}}" class="btn waves-effect waves-light blue"> Limpar carrinho <i class="material-icons right">clear</i></a>
         <button class="btn waves-effect waves-light green"> Finalizar pedido <i class="material-icons right">check</i></button>
     </div>
