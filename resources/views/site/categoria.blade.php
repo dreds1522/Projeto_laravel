@@ -14,11 +14,11 @@
             <img src="{{ $produto->imagem }}">
             
             <a href="{{ route('site.details', $produto->slug )}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>
-          </div>
-        <div class="card-content">
+            </div>
+            <div class="card-content">
             <span class="card-title">{{ $produto->nome }}</span>
-          <p>{{ Str::limit( $produto->descricao, 20)  }}</p>
-        </div>
+            <p>{{ Str::limit( $produto->descricao, 20)  }}</p>
+            </div>
       </div>
     </div>
 

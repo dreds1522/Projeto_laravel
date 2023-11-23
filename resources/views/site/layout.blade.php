@@ -24,9 +24,9 @@
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo center">CursoLaravel</a>
       <ul id="nav-mobile" class="left">
-        <li><a href="{{ Route('site.index')}}">Home</a></li>
+        <li><a href="{{ route('site.index')}}">Home</a></li>
         <li><a href="" class="dropdown-trigger" data-target='dropdown1'> Categorias </a></li>
-        <li><a href="">Carrinho</a></li>
+        <li><a href="{{ route('site.carrinho')}}">Carrinho <span class="new badge blue" data-badge-caption=""> {{\Cart::getContent()->count()}} </span> </a></li>
       
       </ul>
     </div>
